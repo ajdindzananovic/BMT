@@ -5,10 +5,39 @@ import Store from "./components/store";
 import Office from "./components/office";
 import Stock from "./components/stock";
 import { Route, Switch } from "react-router-dom";
-import VerticalNavBar from "./components/verticalNavBar";
+import VerticalNav from "./components/navbar/verticalNav";
 import Logo from "./components/logo";
 class App extends Component {
-  state = {};
+  state = {
+    navStockProperty: [
+      {
+        itemName: "Products",
+        linkTo: "/products"
+      },
+      {
+        itemName: "Inventory",
+        linkTo: "/inventory"
+      },
+      {
+        itemName: "Transaction",
+        linkTo: "/transaction"
+      }
+    ],
+    navStoreProperty: [
+      {
+        itemName: "Products",
+        linkTo: "/products"
+      },
+      {
+        itemName: "Inventory",
+        linkTo: "/inventory"
+      },
+      {
+        itemName: "Transaction",
+        linkTo: "/transaction"
+      }
+    ]
+  };
   render() {
     return (
       <React.Fragment>
@@ -23,7 +52,7 @@ class App extends Component {
           </header>
           <main className="row">
             <div className="col-3">
-              <VerticalNavBar />
+              <VerticalNav navData={this.state.navStockProperty} />
             </div>
             <div className="col-9">
               <Switch>
