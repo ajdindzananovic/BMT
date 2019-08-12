@@ -23,18 +23,18 @@ class App extends Component {
         linkTo: "/transaction"
       }
     ],
-    navStoreProperty: [
+    navOfficeProperty: [
       {
-        itemName: "Products",
-        linkTo: "/products"
+        itemName: "Sales Invoices",
+        linkTo: "/invoices"
       },
       {
-        itemName: "Inventory",
-        linkTo: "/inventory"
+        itemName: "Sales Reports",
+        linkTo: "/reports"
       },
       {
-        itemName: "Transaction",
-        linkTo: "/transaction"
+        itemName: "Suppliers",
+        linkTo: "/suppliers"
       }
     ]
   };
@@ -50,15 +50,20 @@ class App extends Component {
               <TopNavBar />
             </div>
           </header>
-          <main className="row">
-            <div className="col-3">
-              <VerticalNav navData={this.state.navStockProperty} />
-            </div>
-            <div className="col-9">
+          <main>
+            <div className="row">
               <Switch>
-                <Route path="/stock" component={Stock} />
+                <Route
+                  path="/stock"
+                  render={() => <Stock navData={this.state.navStockProperty} />}
+                />
                 <Route path="/store" component={Store} />
-                <Route path="/office" component={Office} />
+                <Route
+                  path="/office"
+                  render={() => (
+                    <Office navData={this.state.navOfficeProperty} />
+                  )}
+                />
               </Switch>
             </div>
           </main>
