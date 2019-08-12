@@ -11,10 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.navbar-brand {
-  padding-left: 10%;
-  padding-right: 10%;
-}
-.navbar {
-  padding-top: 2% !important;
+
+.row {
+  padding-top: 5%;
 }

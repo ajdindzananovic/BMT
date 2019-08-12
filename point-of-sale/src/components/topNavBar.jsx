@@ -3,9 +3,6 @@ import { Link, NavLink } from "react-router-dom";
 const TopNavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="#">
-        Point of sale
-      </Link>
       <button
         className="navbar-toggler"
         type="button"
