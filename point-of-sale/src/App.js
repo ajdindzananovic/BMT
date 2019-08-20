@@ -7,37 +7,83 @@ import Stock from "./components/stock";
 import { Route, Switch } from "react-router-dom";
 import VerticalNav from "./components/navbar/verticalNav";
 import Logo from "./components/logo";
+import Product from "./components/product";
+
 class App extends Component {
   state = {
-    navStockProperty: [
+
+    data:[{
+      itemName: "",
+      linkTo: "",
+       parentLink:""
+      
+    }],
+    verticalNavLinks: [
       {
         itemName: "Products",
-        linkTo: "/products"
+        linkTo: "/stock/products",
+         parentLink:"stock"
+        
       },
       {
         itemName: "Inventory",
-        linkTo: "/inventory"
+        linkTo: "/inventory",
+        parentLink:"stock"
       },
       {
         itemName: "Transaction",
-        linkTo: "/transaction"
-      }
-    ],
-    navOfficeProperty: [
+        linkTo: "/transaction",
+        parentLink:"stock"
+      },
+     
       {
         itemName: "Sales Invoices",
-        linkTo: "/invoices"
+        linkTo: "/invoices",
+        parentLink:"office",
       },
       {
         itemName: "Sales Reports",
-        linkTo: "/reports"
+        linkTo: "/reports",
+        parentLink:"office"
       },
       {
         itemName: "Suppliers",
-        linkTo: "/suppliers"
+        linkTo: "/suppliers",
+        parentLink:"office"
+      },
+      {
+        itemName: "Seller",
+        linkTo: "/seller",
+        parentLink:"store"
+      }
+    ],
+    parentLinks:[
+      {_id:1,
+        parentLink:"stock"
+      
+      },
+      {_id:2,
+        parentLink:"store"
+      
+      },
+      {_id:3,
+        parentLink:"office"
+      
       }
     ]
   };
+
+  handleOnClick =(parentLink)=>{
+
+    const data = this.state.verticalNavLinks.filter(p => p.parentLink===parentLink)
+    
+    this.setState({data});
+    
+  
+
+  }
+ 
+
   render() {
     return (
       <React.Fragment>
@@ -47,23 +93,31 @@ class App extends Component {
               <Logo />
             </div>
             <div className="col-9">
-              <TopNavBar />
+              <TopNavBar  parentLink={this.state.parentLinks} onClickButton={this.handleOnClick} />
             </div>
           </header>
           <main>
+           
+          
             <div className="row">
+            <div className="col-3">
+          <VerticalNav navData={this.state.data} />
+        </div>
+            
               <Switch>
                 <Route
+                
+
                   path="/stock"
-                  render={() => <Stock navData={this.state.navStockProperty} />}
+                  exact
+                  component={Stock}
                 />
                 <Route path="/store" component={Store} />
                 <Route
                   path="/office"
-                  render={() => (
-                    <Office navData={this.state.navOfficeProperty} />
-                  )}
+                  component={Office}
                 />
+
               </Switch>
             </div>
           </main>

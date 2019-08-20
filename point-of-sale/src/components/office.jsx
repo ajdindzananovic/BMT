@@ -6,9 +6,7 @@ class Office extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="col-3">
-          <VerticalNav navData={this.props.navData} />
-        </div>
+        
         <div className="col-9">
           <Table />
         </div>
